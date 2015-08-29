@@ -45,6 +45,10 @@
 
 - hosts: all
   tasks:
+    - name: add gcc-arm-embedded
+      sudo: true
+      apt_repository: repo='ppa:terry.guo/gcc-arm-embedded'
+
     - name: Installs packages
       sudo: true
       apt: pkg={{item}} state=installed update_cache=true cache_valid_time=86400
@@ -56,6 +60,7 @@
         - libssl-dev
         - unzip
         - gettext
+        - gcc-arm-none-eabi
 
     - name: Git configuration
       copy:
