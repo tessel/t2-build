@@ -1,0 +1,90 @@
+---
+- hosts: need_swap
+  tasks:
+    - name: set swap_file variable
+      set_fact:
+        swap_file: /mnt/{{ swap_space }}.swap
+
+    - name: check if swap file exists
+      stat:
+        path: "{{ swap_file }}"
+      register: swap_file_check
+
+    - name: create swap file
+      sudo: yes
+      command: fallocate -l {{ swap_space }} {{ swap_file }}
+      when: not swap_file_check.stat.exists
+
+    - name: set permissions on swap file
+      sudo: yes
+      file:
+        path: "{{ swap_file }}"
+        mode: 0600
+
+    - name: format swap file
+      sudo: yes
+      command: mkswap {{ swap_file }}
+      when: not swap_file_check.stat.exists
+
+    - name: add to fstab
+      sudo: yes
+      lineinfile:
+        dest: /etc/fstab
+        regexp: "{{ swap_file }}"
+        line: "{{ swap_file }} none swap sw 0 0"
+
+    - name: turn on swap
+      sudo: yes
+      command: swapon -a
+
+    - name: set swapiness
+      sudo: yes
+      sysctl:
+        name: vm.swappiness
+        value: "1"
+
+- hosts: all
+  tasks:
+    - name: Installs packages
+      sudo: true
+      apt: pkg={{item}} state=installed update_cache=true cache_valid_time=86400
+      with_items:
+        - git-core
+        - g++
+        - subversion
+        - libncurses-dev
+        - libssl-dev
+        - unzip
+        - gettext
+
+    - name: Git configuration
+      copy:
+        dest: ~/.gitconfig
+        content: |
+          [user]
+            name = T2 Builder
+            email = tim+t2-builder@tessel.io
+
+    - name: ensure github.com is a known host
+      lineinfile:
+        dest: ~/.ssh/known_hosts
+        create: yes
+        state: present
+        line: "{{ lookup('pipe', 'ssh-keyscan -t rsa github.com') }}"
+        regexp: "^github\\.com"
+
+    - name: ensure bitbucket.org is a known host
+      lineinfile:
+        dest: ~/.ssh/known_hosts
+        create: yes
+        state: present
+        line: "{{ lookup('pipe', 'ssh-keyscan -t rsa bitbucket.org') }}"
+        regexp: "^bitbucket\\.org"
+
+    - name: create build dir
+      sudo: true
+      # option to override build_dir_owner (currently used by vagrant)
+      file: path=/work state=directory mode=0755 owner={{build_dir_owner | default('ubuntu')}}
+
+    - name: start in build dir
+      lineinfile: dest=~/.bashrc line="cd /work"
