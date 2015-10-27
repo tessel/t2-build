@@ -1,0 +1,19 @@
+language: cpp
+compiler: g++
+
+sudo: false
+
+before_install:
+- add-apt-repository -y ppa:ubuntu-toolchain-r/test
+- add-apt-repository -y ppa:terry.guo/gcc-arm-embedded
+- apt-get update -qq
+
+install:
+- apt-get install -qq g++-4.8
+- export CXX="g++-4.8"
+- apt-get install git-core subversion libncurses-dev libssl-dev unzip gettext gcc-arm-none-eabi
+
+script:
+- git clone --recursive https://github.com/tessel/openwrt-tessel
+- cd openwrt-tessel
+- make -j64 || make -j64 || make -j64 V=s
