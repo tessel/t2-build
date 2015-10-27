@@ -1,0 +1,26 @@
+language: cpp
+compiler: g++
+
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - gcc-4.8
+    - g++-4.8
+    - subversion
+    - libssl-dev
+    - unzip
+    - gettext
+
+sudo: false
+
+before_install:
+- 'wget https://launchpad.net/gcc-arm-embedded/4.9/4.9-2014-q4-major/+download/gcc-arm-none-eabi-4_9-2014q4-20141203-linux.tar.bz2'
+- 'tar -xf gcc-arm-none-eabi-4_9-2014q4-20141203-linux.tar.bz2'
+- 'export PATH=$(pwd)/gcc-arm-none-eabi-4_9-2014q4/bin:$PATH'
+
+script:
+- 'git clone --recursive https://github.com/tessel/openwrt-tessel -b tcr-fixbuild'
+- 'cd openwrt-tessel'
+- 'make -j4 || make -j4 || make -j4 V=s'
