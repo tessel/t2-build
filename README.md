@@ -22,8 +22,9 @@ $ make -j64
 
 ```bash
 $ docker build -t t2 .
-$ docker create -t -i t2 bash --name t2-build
-$ docker start -a -i t2-build
+$ docker create -t -i t2 bash
+5bfbfd883d3ee815682a389e55a80551a59df767945cd831e89e6b2f502df67d
+$ docker start -a -i 5bfbfd883d3ee815682a389e55a80551a59df767945cd831e89e6b2f502df67d
 ```
 
 This will land you in bash in the /work directory, with a subdirectory for the
