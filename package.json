@@ -1,0 +1,39 @@
+{
+  "name": "t2-release",
+  "version": "1.0.0",
+  "description": "This is a script to deploy new Tessel builds to AWS. Currently, it will only work for those with Tessel GCloud and AWS access (which is pretty much just @johnnyman727).",
+  "main": "release.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "t2-release": "./lib/release.js"
+  },
+  "keywords": ["tessel", "release", "build", "deploy", "tool"],
+  "author": "Jon McKay <jon@tessel.io>",
+  "license": "MIT",
+  "repository": "https://github.com/tessel/t2-release",
+  "dependencies": {
+    "colors": "^1.1.2",
+    "commander": "^2.9.0",
+    "debug": "^2.2.0",
+    "expand-tilde": "^1.2.0",
+    "s3": "^4.4.0",
+    "semver": "^5.1.0",
+    "ssh2": "^0.4.13"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-cli": "^0.1.13",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-nodeunit": "^0.4.1",
+    "grunt-jsbeautifier": "^0.2.10",
+    "grunt-jscs": "^2.6.0",
+    "sinon": "^1.17.2"
+  },
+  "engine-strict": true,
+  "preferGlobal": true,
+  "engines": {
+    "node": ">=4.2.1"
+  }
+}
