@@ -14,7 +14,7 @@ You will then need to create a `config.json` file that matches `example-config.j
 
 ## Usage
 ```
-t2-release # Releases a new build with a path increment from the last publushed version
+t2-release # Releases a new build with a pacth increment from the last published version
 
-t2-release --semver minor # Specify the semver increment ('patch', 'minor', 'major', etc.)
+t2-release --semver minor # Specify the semver increment ('patch', 'minor', 'major', etc.) and release
 ```
