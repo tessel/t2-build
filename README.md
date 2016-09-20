@@ -4,6 +4,8 @@
 
 Ansible and Vagrant scripts for building t2. Targets a Ubuntu 14.04 installation or VM.
 
+**NOTE:** You will need to have `ansible` installed before running.
+
 ```
 vagrant up
 vagrant ssh
