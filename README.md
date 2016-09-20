@@ -19,6 +19,17 @@ $ cd t2-firmware
 $ make -j64
 ```
 
-# license
+To generate `toolchain-mipsel.tar.gz` for `t2-compiler`, run:
 
-mit/asl2
+```
+tar -cvzf /work/toolchain-mipsel.tar.gz \
+  -C /work/openwrt-tessel/openwrt/staging_dir/ \
+  target-mipsel_24kec+dsp_uClibc-0.9.33.2 \
+  toolchain-mipsel_24kec+dsp_gcc-4.8-linaro_uClibc-0.9.33.2
+```
+
+...and upload the resulting `/work/toolchain-mipsel.tar.gz` file.
+
+# License
+
+MIT or Apache2-.0, at your option.
