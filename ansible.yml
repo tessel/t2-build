@@ -47,7 +47,7 @@
   tasks:
     - name: add gcc-arm-embedded
       sudo: true
-      apt_repository: repo='ppa:terry.guo/gcc-arm-embedded'
+      apt_repository: repo='ppa:team-gcc-arm-embedded/ppa'
 
     - name: Installs packages
       sudo: true
