@@ -1,0 +1,10 @@
+{
+  "awsCredentials" : {
+    "accessKeyId": "yummy",
+    "secretAccessKey": "marshmallows"
+  },
+  "buildMachine" : {
+    "host" : "your_compute.tessel.io",
+    "user" : "your_user"
+  }
+}
