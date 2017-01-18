@@ -2,3 +2,6 @@
 ssh.conf
 ansible.retry
 toolchain-mipsel.tar.gz
+build
+config.json
+node_modules

@@ -1,0 +1,6 @@
+{
+  "awsCredentials" : {
+    "accessKeyId": "yummy",
+    "secretAccessKey": "marshmallows"
+  }
+}

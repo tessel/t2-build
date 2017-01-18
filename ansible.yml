@@ -60,7 +60,7 @@
         - libssl-dev
         - unzip
         - gettext
-        - gcc-arm-none-eabi
+        - gcc-arm-embedded
 
     - name: Git configuration
       copy:
