@@ -2,3 +2,7 @@
 ssh.conf
 ansible.retry
 toolchain-mipsel.tar.gz
+boot.bin
+firmware.bin
+openwrt-ramips-mt7620-Default-u-boot.bin
+openwrt-ramips-mt7620-tessel-squashfs-sysupgrade.bin

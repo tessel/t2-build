@@ -51,16 +51,19 @@
 
     - name: Installs packages
       become: true
-      apt: pkg={{item}} state=installed update_cache=true cache_valid_time=86400
-      with_items:
-        - git-core
-        - g++
-        - subversion
-        - libncurses-dev
-        - libssl-dev
-        - unzip
-        - gettext
-        - gcc-arm-none-eabi
+      apt:
+        pkg:
+          - git-core
+          - g++
+          - subversion
+          - libncurses-dev
+          - libssl-dev
+          - unzip
+          - gettext
+          - gcc-arm-none-eabi
+        state: present
+        update_cache: true
+        cache_valid_time: 86400
 
     - name: Git configuration
       copy:
